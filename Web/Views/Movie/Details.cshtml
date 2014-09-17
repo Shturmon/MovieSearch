@@ -1,0 +1,122 @@
+﻿@using DAL.Models
+@using Microsoft.AspNet.Identity
+@model Web.Models.MovieViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+@section scripts{
+    <script src="@Url.Content("~/Scripts/rating.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/MovieSearchAjax.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/rating.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/trailer.css")" rel="stylesheet" type="text/css" />
+}
+<h2>Details of movie</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DirectorId)
+        </dt>
+
+        <dd>
+            @{
+                foreach (var cast in Model.CastAndCrews)
+                {
+                    if (cast.PeopleId == Model.DirectorId && cast.Career.Title == "Director")
+                    {
+                         @: @Html.ActionLink(cast.People.FullName, "Details", "People", new { id = cast.PeopleId }, null)
+                                <br />  }  }         }  </dd>  <dt> @Html.DisplayNameFor(model => model.PremiereDate)  </dt>   <dd> @Html.DisplayFor(model => model.PremiereDate)  </dd>  <dt> @Html.DisplayNameFor(model => model.Desctiption)  </dt> <dd> @Html.DisplayFor(model => model.Desctiption)  </dd>  <dt> @Html.DisplayNameFor(model => model.Country.Title)  </dt>   <dd> @Html.DisplayFor(model => model.Country.Title)  </dd> <dt> @Html.DisplayNameFor(model => model.ImdbRating) </dt> <dd> @Html.DisplayFor(model => model.ImdbRating) </dd> <dt> @Html.DisplayNameFor(model => model.Rating) </dt>  <dd id="movieRating"> @{ if (Double.IsNaN(Model.Rating)) { @: nobody rate this movie yet
+                        } else { @Html.Encode(String.Format("{0:0.00}", Model.Rating)); } } </dd> <dt> Poster </dt>   <dd> <img src="@string.Format("/Posters/{0}.jpg", Model.Id)"  id="poster" width="100" height="100" alt="Poster"/>  </dd>  <dt> @Html.DisplayNameFor(model => model.Genres)  </dt>   <dd> @{  foreach (var genre in Model.Genres)  {  @: @Html.ActionLink(genre.Title, "Details", "Genre", new { id = genre.Id }, null)
+                     } }  </dd>  <dt> @Html.DisplayNameFor(model => model.CastAndCrews)  </dt>  <dd> @{ foreach (var actor in Model.CastAndCrews)  {  if (actor.Career.Title == "Actor")  {  @: @Html.ActionLink(actor.People.FullName,"Details","People", new { id = actor.People.Id}, null)
+<br />
+                   }
+               }
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TrailerLink)
+        </dt>
+        <dd>
+            <div id="dialog-modal" title="Youtube Video" style="display:none">
+                <object width="480" height="385">
+                    <param name="movie" value="@Model.TrailerLink">
+                    <param name="allowFullScreen" value="true">
+                    <param name="allowscriptaccess" value="always">
+                    <embed src="@Model.TrailerLink"
+                           type="application/x-shockwave-flash" allowscriptaccess="always"
+                           allowfullscreen="true" width="480" height="385">
+                </object>
+            </div>
+            <input type="movieRating" onclick="javascript:Show(); " value="Watch trailer" />
+        </dd>
+    </dl>
+</div>
+
+<div id="rateMovie">
+    @if (Request.IsAuthenticated)
+    {
+        if (Model.Ratings.Count(m => m.MovieId == Model.Id && m.UserId == User.Identity.GetUserId()) == 0)
+        {
+            <h4>Rate a movie</h4>
+            <div class="ratting-item" data-pid="@Model.Id">
+                <input class="rating" name="vote" type="radio" value="1" id="radio1" />
+                <input class="rating" name="vote" type="radio" value="2" id="radio2" />
+                <input class="rating" name="vote" type="radio" value="3" id="radio3" />
+                <input class="rating" name="vote" type="radio" value="4" id="radio4" />
+                <input class="rating" name="vote" type="radio" value="5" id="radio5" />
+            </div>
+            <span id="result"></span>
+        }
+        else
+        {
+            <h4>You already rate this movie</h4>
+            <form method="post" action="@Url.Action("VoteAgain")">
+                <input type="hidden" value="@Model.Id" name="movieId"/>
+                <input type="submit" value="Vote Again" />
+            </form>
+        }
+
+    }
+</div>
+<div align="left">
+    <h4>Comments</h4>
+    <ul id="comments">
+        @foreach (var comment in Model.UserComments)
+        {
+            <li>
+                @comment.User.UserName |
+                @comment.Date <br>
+                @comment.Comment
+            </li>
+        }
+    </ul>
+
+    @if (Request.IsAuthenticated)
+    {
+        <form method="post" id="commentForm" action="@Url.Action("AddComment")">
+                @Html.TextArea("Comment", "", 5, 50, new { @id = "textArea" })
+                <div id="commentResult" style="display: none;">
+                    <span id="commentResultText">An error occurred</span>
+                </div>
+                <br /><br/>
+                <input type="hidden" value="@Model.Id" name="movieId"/>
+                <input type="submit" value="Add Comment"  />
+        </form>
+    }
+</div>
+<br/>
+<p>
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "CreateOrUpdate", new { id = Model.Id })
+    }
+    | @Html.ActionLink("Back to List", "Index")
+</p>

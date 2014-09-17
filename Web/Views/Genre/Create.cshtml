@@ -1,0 +1,21 @@
+﻿@using System.Runtime.Serialization.Formatters
+@model Web.Models.GenreViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add Genre</h2>
+
+@using (Html.BeginForm()) 
+{
+   @Html.Partial("~/Views/Shared/_GenreEditPartial.cshtml")
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

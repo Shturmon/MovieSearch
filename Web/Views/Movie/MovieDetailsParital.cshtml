@@ -1,0 +1,84 @@
+﻿@model Web.Models.MovieViewModel
+
+<div>
+    <h4>Details</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DirectorId)
+        </dt>
+
+        <dd>
+            @{
+                foreach (var cast in Model.CastAndCrews)
+                {
+                    if (cast.PeopleId == Model.DirectorId && cast.Career.Title == "Director")
+                    {
+                        @: @Html.ActionLink(cast.People.FullName, "Details", "People", new { id = cast.PeopleId }, null)
+                        <br />
+                    }
+                }
+            }
+
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PremiereDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PremiereDate)
+        </dd>
+        <dt>
+            Country title
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Country.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Desctiption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desctiption)
+        </dd>
+
+        <dt>
+            Poster
+        </dt>
+        <dd>
+            <img src="@string.Format("/Posters/{0}.jpg", Model.Id)"
+                 id="poster" width="100" height="100" alt="Poster" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd>
+            @{
+                if (Double.IsNaN(Model.Rating))
+                {
+                    @:Nobody rate this movie yet
+                }
+                else
+                {
+                    @Html.Encode(String.Format("{0:0.00}", Model.Rating));
+                }
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImdbRating)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImdbRating)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("See more", "Details", new { id = Model.Id }) |
+</p>

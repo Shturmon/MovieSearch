@@ -1,0 +1,75 @@
+﻿@model PagedList.IPagedList<Web.Models.PeopleViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/MovieSearchAjax.js")"></script>
+}
+
+<h2>Peoples</h2>
+@Html.ActionLink("Clear all filters", "Index", new { currentFullName = "" }) <br />
+<form method="get" id="searchForm" action="@Url.Action("Index")">
+    FullName: @Html.TextBox("FullName", ViewBag.CurrentFullName as string)
+    <br /><br />
+    <input type="submit" value="Filter" />
+</form>
+
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Create New", "Create")
+}
+
+<table class="table">
+    <tr>
+        <th>
+            FullName
+        </th>
+        <th>
+            BirthDay
+        </th>
+        <th>
+            BirthPlace
+        </th>
+        <th>
+            CastAndCrews
+        </th>
+    </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.ActionLink(item.FullName, "Details", "People", new { id = item.Id }, new { @class = "col-md-10" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthPlace)
+            </td>
+            <td>
+                @foreach (var movie in item.CastAndCrews)
+                {
+                    @:  @Html.ActionLink(movie.Movie.Title,"Details","Movie", new { id = movie.MovieId}, null) <br />
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <a>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </a>
+                }
+            </td>
+        </tr>
+    }
+</table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", 
+    new { page, currentFullName = ViewBag.CurrentFullName } ))

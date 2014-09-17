@@ -1,0 +1,20 @@
+﻿@model Web.Models.CountryViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add country</h2>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+    
+    
+@using (Html.BeginForm()) 
+{
+    @Html.Partial("~/Views/Shared/_CountryEditPartial.cshtml")
+}
+    
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

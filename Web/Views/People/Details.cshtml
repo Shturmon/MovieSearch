@@ -1,0 +1,53 @@
+﻿@model Web.Models.PeopleViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of people</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDay)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.BirthDay)
+        </dd>
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthPlace)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BirthPlace)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CastAndCrews)
+        </dt>
+        <dd>
+            @{
+                foreach (var movie in Model.CastAndCrews)
+                {
+                     @:  @Html.ActionLink(movie.Movie.Title, "Details", "Movie", new { id = movie.MovieId }, null) <br />
+                }
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    }
+    | @Html.ActionLink("Back to List", "Index")
+</p>

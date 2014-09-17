@@ -1,0 +1,21 @@
+﻿@model Web.Models.PeopleViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add People</h2>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+    
+    
+@using (Html.BeginForm("Create", "People", null, FormMethod.Post,
+                              new { enctype = "multipart/form-data" }))
+{
+    @Html.Partial("~/Views/Shared/_PeopleEditPartial.cshtml");
+}
+    
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

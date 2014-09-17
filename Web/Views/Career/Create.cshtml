@@ -1,0 +1,19 @@
+﻿@model Web.Models.CareerViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+    
+<h2>Add career</h2>
+    
+@using (Html.BeginForm()) 
+{
+    @Html.Partial("~/Views/Shared/_CareerEditPartial.cshtml")
+}
+    
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

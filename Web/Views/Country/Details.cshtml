@@ -1,0 +1,38 @@
+﻿@model Web.Models.CountryViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of country</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+    
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Movies)
+        </dt>
+        <dd>
+            @{
+                foreach (var movie in Model.Movies)
+                {
+                    @:  @Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.Id }, null) <br />
+                }
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    }
+    | @Html.ActionLink("Back to List", "Index")
+</p>
