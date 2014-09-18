@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using AutoMapper;
-using BLL.Contracts;
-using DAL.Models;
+using MovieSearch.Data.Models;
+using MovieSearch.Logic.Contracts;
+using MovieSearch.Logic.Contracts.Services;
+using MovieSearch.Web.Models;
 using PagedList;
-using Web.Models;
 
-namespace Web.Controllers
+namespace MovieSearch.Web.Controllers
 {
     [HandleError]
     public class PeopleController : Controller

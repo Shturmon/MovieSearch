@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using DAL.Models;
+using MovieSearch.Data.Models;
 
-namespace Web.Models
+namespace MovieSearch.Web.Models
 {
     public class MovieViewModel
     {

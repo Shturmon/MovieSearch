@@ -1,8 +1,9 @@
 ﻿using Microsoft.Owin;
+using MovieSearch.Web;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Web.Startup))]
-namespace Web
+[assembly: OwinStartup(typeof(Startup))]
+namespace MovieSearch.Web
 {
     public partial class Startup
     {

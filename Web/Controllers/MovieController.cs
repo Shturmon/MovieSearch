@@ -6,14 +6,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using BLL.Contracts;
-using DAL.Models;
 using Microsoft.AspNet.Identity;
+using MovieSearch.Data.Models;
+using MovieSearch.Logic.Contracts;
+using MovieSearch.Logic.Contracts.Services;
+using MovieSearch.Web.Models;
 using Newtonsoft.Json;
 using PagedList;
-using Web.Models;
 
-namespace Web.Controllers
+namespace MovieSearch.Web.Controllers
 {
     [HandleError]
     public class MovieController : Controller

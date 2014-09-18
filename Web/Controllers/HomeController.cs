@@ -1,8 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
-using Web.Models;
+﻿using System.Web.Mvc;
 
-namespace Web.Controllers
+namespace MovieSearch.Web.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,4 +1,4 @@
-﻿@model Web.Models.CountryViewModel
+﻿@model MovieSearch.Web.Models.CountryViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -22,8 +22,8 @@
         <dd>
             @{
                 foreach (var movie in Model.Movies)
-                {
-                    @:  @Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.Id }, null) <br />
+                {@:
+                     @Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.Id }, null) <br />
                 }
             }
         </dd>

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Security.Principal;
 
-namespace DAL.Models
+namespace MovieSearch.Data.Models
 {
     public class Movie
     {

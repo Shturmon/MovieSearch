@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Web.Models.PeopleViewModel>
+﻿@model PagedList.IPagedList<MovieSearch.Web.Models.PeopleViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
@@ -51,8 +51,8 @@
             </td>
             <td>
                 @foreach (var movie in item.CastAndCrews)
-                {
-                    @:  @Html.ActionLink(movie.Movie.Title,"Details","Movie", new { id = movie.MovieId}, null) <br />
+                {@:
+                     @Html.ActionLink(movie.Movie.Title,"Details","Movie", new { id = movie.MovieId}, null) <br />
                 }
             </td>
             <td>

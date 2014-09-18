@@ -1,22 +1,17 @@
-using System.Collections.Generic;
-using BLL;
-using DAL.Models;
+using System.Data.Entity.Migrations;
+using MovieSearch.Data.DAL.Context;
 
-namespace DAL.Migrations
+namespace MovieSearch.Data.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<MoviesContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<MoviesDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "MovieSearch.DAL.MoviesContext";
+            ContextKey = "MovieSearch.Data.MoviesContext";
         }
 
-        protected override void Seed(MoviesContext context)
+        protected override void Seed(MoviesDbContext context)
         {
             //var countries = new List<Country>
             //{

@@ -6,7 +6,7 @@
     <ProjectGuid>{974EF2FA-822B-4C4B-B26B-94F945ADC994}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tests</RootNamespace>
+    <RootNamespace>MovieSearch.Tests</RootNamespace>
     <AssemblyName>Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -78,13 +78,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
+    <ProjectReference Include="..\BLL\Logic.csproj">
       <Project>{0d3ab3c2-a6db-4107-bbd5-fb4d4f09991a}</Project>
-      <Name>BLL</Name>
+      <Name>Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
+    <ProjectReference Include="..\DAL\Data.csproj">
       <Project>{95335ad0-a4b2-4624-a856-30dfa298cc01}</Project>
-      <Name>DAL</Name>
+      <Name>Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

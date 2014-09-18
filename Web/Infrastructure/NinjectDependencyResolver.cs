@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using BLL;
-using DAL;
-using DAL.Contracts;
-using DAL.Repositories;
+using MovieSearch.Data;
+using MovieSearch.Data.Contracts;
+using MovieSearch.Data.Contracts.Repositories;
+using MovieSearch.Data.DAL.Context;
+using MovieSearch.Data.DAL.Repositories;
+using MovieSearch.Logic.BLL.Services;
+using MovieSearch.Logic.Contracts;
+using MovieSearch.Logic.Contracts.Services;
 using Ninject;
 using Ninject.Web.Common;
-using BLL.Contracts;
-using BLL.Services;
 
-namespace Web.Infrastructure
+namespace MovieSearch.Web.Infrastructure
 {
     public class NinjectDependencyResolver : IDependencyResolver
     {
-        private IKernel _kernel;
+        private readonly IKernel _kernel;
         public NinjectDependencyResolver()
         {
             _kernel = new StandardKernel();
@@ -44,7 +46,7 @@ namespace Web.Infrastructure
             _kernel.Bind<IUserCommentService>().To<UserCommentService>().InRequestScope();
             _kernel.Bind<IRatingRepository>().To<RatingRepository>().InRequestScope();
             _kernel.Bind<IRatingService>().To<RatingService>().InRequestScope();
-            _kernel.Bind<MoviesContext>().ToSelf().InRequestScope();
+            _kernel.Bind<MoviesDbContext>().ToSelf().InRequestScope();
         }
     }
 }

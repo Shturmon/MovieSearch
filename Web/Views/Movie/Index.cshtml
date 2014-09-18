@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Web.Models.MovieViewModel>
+﻿@model PagedList.IPagedList<MovieSearch.Web.Models.MovieViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
@@ -80,8 +80,7 @@
                     foreach (var cast in item.CastAndCrews)
                     {
                         if (cast.PeopleId == item.DirectorId && cast.Career.Title == "Director")
-                        {
-                            @: @Html.ActionLink(cast.People.FullName, "Details", "People", new { id = cast.PeopleId }, null)
+                        { @Html.ActionLink(cast.People.FullName, "Details", "People", new { id = cast.PeopleId }, null)
                         }
                     }
                 }
@@ -113,8 +112,7 @@
             <td>
                 @{
                     foreach (var genre in item.Genres)
-                    {
-                        @: @Html.ActionLink(genre.Title, "Details", "Genre", new { id = genre.Id }, null)
+                    { @Html.ActionLink(genre.Title, "Details", "Genre", new { id = genre.Id }, null)
                     }
                 }
             </td>
@@ -123,8 +121,7 @@
                     foreach (var actor in item.CastAndCrews)
                     {
                         if (actor.Career.Title == "Actor")
-                        {
-                            @: @Html.ActionLink(actor.People.FullName, "Details", "People", new { id = actor.PeopleId }, null)
+                        { @Html.ActionLink(actor.People.FullName, "Details", "People", new { id = actor.PeopleId }, null)
                         }
                     }
                 }

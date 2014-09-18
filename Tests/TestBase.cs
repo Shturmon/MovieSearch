@@ -1,7 +1,7 @@
 ﻿using System.Transactions;
 using NUnit.Framework;
 
-namespace Tests
+namespace MovieSearch.Tests
 {
     public class TestsBase
     {

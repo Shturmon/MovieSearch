@@ -2,14 +2,15 @@
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using MovieSearch.Data.DAL.Context;
+using MovieSearch.Data.Models;
 
-namespace DAL
+namespace MovieSearch.Data
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
 
@@ -23,7 +24,7 @@ namespace DAL
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
             IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<MoviesContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<MoviesDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
@@ -57,18 +58,18 @@ namespace DAL
 
         public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {
-            return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<MoviesContext>()));
+            return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<MoviesDbContext>()));
         }
     }
 
     // This is useful if you do not want to tear down the database each time you run the application.
     // public class ApplicationDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
     // This example shows you how to create a new database if the Model changes
-    public class ApplicationDbInitializer : CreateDatabaseIfNotExists<MoviesContext>
+    public class ApplicationDbInitializer : CreateDatabaseIfNotExists<MoviesDbContext>
     {
-        private MoviesContext _db;
+        private MoviesDbContext _db;
 
-        protected override void Seed(MoviesContext context)
+        protected override void Seed(MoviesDbContext context)
         {
             _db = context;
             InitializeIdentityForEf();

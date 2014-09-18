@@ -1,13 +1,14 @@
 ﻿using System;
-using DAL;
-using DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using MovieSearch.Data;
+using MovieSearch.Data.DAL.Context;
+using MovieSearch.Data.Models;
 using Owin;
 
-namespace Web
+namespace MovieSearch.Web
 {
     public partial class Startup
     {
@@ -16,7 +17,7 @@ namespace Web
         {
             // Configure the db context, user manager and role 
             // manager to use a single instance per request
-            app.CreatePerOwinContext(MoviesContext.Create);
+            app.CreatePerOwinContext(MoviesDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);

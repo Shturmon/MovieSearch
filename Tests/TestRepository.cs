@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Linq;
-using BLL;
-using DAL;
-using DAL.Models;
-using DAL.Repositories;
+using MovieSearch.Data;
+using MovieSearch.Data.DAL.Context;
+using MovieSearch.Data.DAL.Repositories;
+using MovieSearch.Data.Models;
 using NUnit.Framework;
 
-namespace Tests
+namespace MovieSearch.Tests
 {
     public class TestRepository : TestsBase
     {
         [Test]
         public void TestInsert()
         {
-            var repo = new CareerRepository(new MoviesContext());
+            var repo = new CareerRepository(new MoviesDbContext());
             var career = new Career { Id = Guid.NewGuid(), Title = "testInsertCareer" };
             repo.Insert(career);
             repo.Save();
@@ -28,7 +28,7 @@ namespace Tests
         [Test]
         public void TestDelete()
         {
-            var repo = new CareerRepository(new MoviesContext());
+            var repo = new CareerRepository(new MoviesDbContext());
             var career = new Career { Id = Guid.NewGuid(), Title = "testDeleteCareer" };
             repo.Insert(career);
             repo.Save();
@@ -43,7 +43,7 @@ namespace Tests
         [Test]
         public void TestUpdate()
         {
-            var repo = new CareerRepository(new MoviesContext());
+            var repo = new CareerRepository(new MoviesDbContext());
             var career = new Career { Id = Guid.NewGuid(), Title = "testUpdateCareer" };
             repo.Insert(career);
             repo.Save();
@@ -61,7 +61,7 @@ namespace Tests
         [Test]
         public void TestGet()
         {
-            var repo = new CareerRepository(new MoviesContext());
+            var repo = new CareerRepository(new MoviesDbContext());
             Career[] careers = new Career[5];
             for (int i = 0; i < 5; i++)
             {

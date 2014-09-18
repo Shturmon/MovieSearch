@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DAL.Models
+namespace MovieSearch.Data.Models
 {
     public class People
     {

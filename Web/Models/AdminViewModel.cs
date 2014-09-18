@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Web.Models
+namespace MovieSearch.Web.Models
 {
     public class RoleViewModel
     {

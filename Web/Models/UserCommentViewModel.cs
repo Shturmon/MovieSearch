@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using DAL.Models;
+using MovieSearch.Data.Models;
 
-namespace Web.Models
+namespace MovieSearch.Web.Models
 {
     public class UserCommentViewModel
     {

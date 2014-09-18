@@ -4,14 +4,14 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using DAL;
-using DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using Web.Models;
+using MovieSearch.Data;
+using MovieSearch.Data.Models;
+using MovieSearch.Web.Models;
 
-namespace Web.Controllers
+namespace MovieSearch.Web.Controllers
 {
     [HandleError]
     [Authorize(Roles = "Admin")]

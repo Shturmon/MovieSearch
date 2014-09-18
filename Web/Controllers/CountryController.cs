@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Net;
 using System.Web.Mvc;
 using AutoMapper;
-using DAL.Models;
-using Web.Models;
-using BLL.Contracts;
+using MovieSearch.Data.Models;
+using MovieSearch.Logic.Contracts;
+using MovieSearch.Logic.Contracts.Services;
+using MovieSearch.Web.Models;
 
-namespace Web.Controllers
+namespace MovieSearch.Web.Controllers
 {
     [HandleError]
     public class CountryController : Controller

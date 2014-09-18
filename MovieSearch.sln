@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{95335AD0-A4B2-4624-A856-30DFA298CC01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "DAL\Data.csproj", "{95335AD0-A4B2-4624-A856-30DFA298CC01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{974EF2FA-822B-4C4B-B26B-94F945ADC994}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{D
 		{95335AD0-A4B2-4624-A856-30DFA298CC01} = {95335AD0-A4B2-4624-A856-30DFA298CC01}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{0D3AB3C2-A6DB-4107-BBD5-FB4D4F09991A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "BLL\Logic.csproj", "{0D3AB3C2-A6DB-4107-BBD5-FB4D4F09991A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

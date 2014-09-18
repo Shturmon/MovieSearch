@@ -1,4 +1,4 @@
-﻿@model Web.Models.MovieViewModel
+﻿@model MovieSearch.Web.Models.MovieViewModel
 
 <div>
     <h4>Details</h4>
@@ -20,8 +20,7 @@
                 foreach (var cast in Model.CastAndCrews)
                 {
                     if (cast.PeopleId == Model.DirectorId && cast.Career.Title == "Director")
-                    {
-                        @: @Html.ActionLink(cast.People.FullName, "Details", "People", new { id = cast.PeopleId }, null)
+                    { @Html.ActionLink(cast.People.FullName, "Details", "People", new { id = cast.PeopleId }, null)
                         <br />
                     }
                 }

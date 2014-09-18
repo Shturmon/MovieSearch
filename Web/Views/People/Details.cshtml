@@ -1,4 +1,4 @@
-﻿@model Web.Models.PeopleViewModel
+﻿@model MovieSearch.Web.Models.PeopleViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -37,8 +37,8 @@
         <dd>
             @{
                 foreach (var movie in Model.CastAndCrews)
-                {
-                     @:  @Html.ActionLink(movie.Movie.Title, "Details", "Movie", new { id = movie.MovieId }, null) <br />
+                {@:
+                     @Html.ActionLink(movie.Movie.Title, "Details", "Movie", new { id = movie.MovieId }, null) <br />
                 }
             }
         </dd>

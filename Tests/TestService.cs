@@ -1,20 +1,21 @@
 ﻿using System;
-using BLL;
-using BLL.Contracts;
-using BLL.Services;
-using DAL;
-using DAL.Models;
-using DAL.Repositories;
+using MovieSearch.Data;
+using MovieSearch.Data.DAL.Context;
+using MovieSearch.Data.DAL.Repositories;
+using MovieSearch.Data.Models;
+using MovieSearch.Logic.BLL.Services;
+using MovieSearch.Logic.Contracts;
+using MovieSearch.Logic.Contracts.Services;
 using NUnit.Framework;
 
-namespace Tests
+namespace MovieSearch.Tests
 {
     public class TestService : TestsBase
     {
         [Test]
         public void TestAdd()
         {
-            ICareerService service = new CareerService(new CareerRepository(new MoviesContext()));
+            ICareerService service = new CareerService(new CareerRepository(new MoviesDbContext()));
             var career = new Career { Id = Guid.NewGuid(), Title = "testInsertCareer" };
             service.AddCareer(career);
 
@@ -27,7 +28,7 @@ namespace Tests
         [Test]
         public void TestDelete()
         {
-            ICareerService service = new CareerService(new CareerRepository(new MoviesContext()));
+            ICareerService service = new CareerService(new CareerRepository(new MoviesDbContext()));
             var career = new Career { Id = Guid.NewGuid(), Title = "testDeleteCareer" };
             service.AddCareer(career);
 
@@ -40,7 +41,7 @@ namespace Tests
         [Test]
         public void TestUpdate()
         {
-            ICareerService service = new CareerService(new CareerRepository(new MoviesContext()));
+            ICareerService service = new CareerService(new CareerRepository(new MoviesDbContext()));
             var career = new Career { Id = Guid.NewGuid(), Title = "testUpdateCareer" };
             service.AddCareer(career);
 
@@ -55,7 +56,7 @@ namespace Tests
         [Test]
         public void TestGetByTitle()
         {
-            ICareerService service = new CareerService(new CareerRepository(new MoviesContext()));
+            ICareerService service = new CareerService(new CareerRepository(new MoviesDbContext()));
             var career = new Career { Id = Guid.NewGuid(), Title = "testGetByTitleCareer" };
             service.AddCareer(career);
 

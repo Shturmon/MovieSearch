@@ -1,10 +1,9 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Web.Infrastructure;
+using MovieSearch.Web.Infrastructure;
 
-namespace Web
+namespace MovieSearch.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {

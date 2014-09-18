@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using DAL.Models;
-using Web.Models;
+using MovieSearch.Data.Models;
+using MovieSearch.Web.Models;
 
-namespace Web
+namespace MovieSearch.Web
 {
     public static class AutoMapperConfiguration
     {

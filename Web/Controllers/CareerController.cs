@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using BLL.Contracts;
-using DAL.Models;
-using Web.Models;
-using DAL;
+using MovieSearch.Data.Models;
+using MovieSearch.Logic.Contracts;
+using MovieSearch.Logic.Contracts.Services;
+using MovieSearch.Web.Models;
 
-namespace Web.Controllers
+namespace MovieSearch.Web.Controllers
 {
     public class CareerController : Controller
     {
